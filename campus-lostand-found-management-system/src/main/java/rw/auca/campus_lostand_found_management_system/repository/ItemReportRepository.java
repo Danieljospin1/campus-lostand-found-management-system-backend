@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import jakarta.transaction.Transactional;
 import rw.auca.campus_lostand_found_management_system.domain.Custodian;
 import rw.auca.campus_lostand_found_management_system.domain.ItemReport;
 import rw.auca.campus_lostand_found_management_system.domain.ReportStatus;
@@ -22,4 +25,13 @@ public interface ItemReportRepository
 
     @Query("SELECT ir.status, COUNT(ir) FROM ItemReport ir GROUP BY ir.status")
     List<Object[]> countItemReportsByStatus();
+
+    @Modifying
+    @Transactional
+    @Query(" UPDATE ItemReport ir SET ir.status = :closedStatus WHERE ir.custodian.id = :custodianId  AND ir.reportDate = :date AND ir.status <> :returnedStatus")
+    int closeReportsForCustodianOnDate(
+            @Param("custodianId") UUID custodianId,
+            @Param("date") LocalDate date,
+            @Param("closedStatus") ReportStatus closedStatus,
+            @Param("returnedStatus") ReportStatus returnedStatus);
 }

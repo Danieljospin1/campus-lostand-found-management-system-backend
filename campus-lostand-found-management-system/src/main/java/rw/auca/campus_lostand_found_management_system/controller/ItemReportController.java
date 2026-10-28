@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -141,5 +142,16 @@ public class ItemReportController {
     public ResponseEntity<List<Object[]>> getItemReportStatsByStatus() {
         return ResponseEntity.ok(
                 itemReportService.getItemReportStatsByStatus());
+    }
+
+    @PatchMapping("/cancel-day")
+    public ResponseEntity<String> cancelReportsForAbsentCustodian(
+            @RequestParam UUID custodianId,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+
+        String result = itemReportService.cancelReportsForAbsentCustodian(
+                custodianId, date);
+
+        return ResponseEntity.ok(result);
     }
 }

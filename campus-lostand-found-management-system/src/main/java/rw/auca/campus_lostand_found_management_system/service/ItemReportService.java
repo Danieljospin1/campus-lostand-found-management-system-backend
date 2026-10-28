@@ -169,4 +169,16 @@ public class ItemReportService {
     public List<Object[]> getItemReportStatsByStatus() {
         return itemReportRepository.countItemReportsByStatus();
     }
+
+    public String cancelReportsForAbsentCustodian(
+            UUID custodianId, LocalDate date) {
+
+        int count = itemReportRepository.closeReportsForCustodianOnDate(
+                custodianId,
+                date,
+                ReportStatus.CLOSED,
+                ReportStatus.RETURNED);
+
+        return count + " item reports cancelled";
+    }
 }
