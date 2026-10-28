@@ -49,4 +49,8 @@ public class ItemCategoryService {
         itemCategoryRepository.deleteById(id);
         return true;
     }
+
+    public List<ItemCategory> findUnusedItemCategories() {
+        return itemCategoryRepository.findUnusedItemCategories();
+    }
 }

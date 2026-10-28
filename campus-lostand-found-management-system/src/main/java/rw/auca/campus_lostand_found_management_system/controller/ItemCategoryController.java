@@ -83,4 +83,10 @@ public class ItemCategoryController {
                     .body("The item category with that ID does not exist");
         }
     }
+
+    @GetMapping("/unused")
+    public ResponseEntity<List<ItemCategory>> findUnusedItemCategories() {
+        return ResponseEntity.ok(
+                itemCategoryService.findUnusedItemCategories());
+    }
 }
