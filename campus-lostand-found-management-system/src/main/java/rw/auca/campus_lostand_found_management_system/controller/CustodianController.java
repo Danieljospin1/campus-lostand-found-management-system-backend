@@ -94,4 +94,22 @@ public class CustodianController {
 
         return ResponseEntity.ok(custodians);
     }
+
+    @PutMapping("/{custodianId}/item-categories/{itemCategoryId}")
+    public ResponseEntity<String> addItemCategory(
+            @PathVariable UUID custodianId,
+            @PathVariable UUID itemCategoryId) {
+
+        String result = custodianService.addItemCategory(
+                custodianId, itemCategoryId);
+
+        if (result.equals("The custodian with that id does not exist")
+                || result.equals("That item category does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+        } else if (result.equals("The custodian already has that item category")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(result);
+        } else {
+            return ResponseEntity.ok(result);
+        }
+    }
 }

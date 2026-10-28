@@ -107,5 +107,31 @@ public class CustodianService {
     public List<Custodian> findByItemCategoryName(String name) {
         return custodianRepository.findByItemCategoryNameIgnoreCase(name);
     }
-    
+
+    public String addItemCategory(UUID custodianId, UUID itemCategoryId) {
+
+        var custodianOptional = custodianRepository.findById(custodianId);
+
+        if (custodianOptional.isEmpty()) {
+            return "The custodian with that id does not exist";
+        }
+
+        var categoryOptional = itemCategoryRepository.findById(itemCategoryId);
+
+        if (categoryOptional.isEmpty()) {
+            return "That item category does not exist";
+        }
+
+        var custodian = custodianOptional.get();
+        var category = categoryOptional.get();
+
+        if (custodian.getItemCategories().contains(category)) {
+            return "The custodian already has that item category";
+        }
+
+        custodian.getItemCategories().add(category);
+        custodianRepository.save(custodian);
+
+        return "Item category added to the custodian";
+    }
 }
