@@ -1,6 +1,5 @@
 
 package rw.auca.campus_lostand_found_management_system.domain;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
