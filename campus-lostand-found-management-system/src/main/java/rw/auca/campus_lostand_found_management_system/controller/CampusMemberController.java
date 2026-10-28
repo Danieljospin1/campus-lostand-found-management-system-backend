@@ -96,4 +96,18 @@ public class CampusMemberController {
 
         return ResponseEntity.ok(members);
     }
+
+    @GetMapping("/of-custodian/{custodianId}")
+    public ResponseEntity<?> getMembersOfCustodian(
+            @PathVariable UUID custodianId) {
+
+        var members = campusMemberService.findMembersOfCustodian(custodianId);
+
+        if (members.isPresent()) {
+            return ResponseEntity.ok(members.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("The custodian with that id does not exist");
+        }
+    }
 }

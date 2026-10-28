@@ -4,6 +4,7 @@ package rw.auca.campus_lostand_found_management_system.service;
 import org.springframework.stereotype.Service;
 import rw.auca.campus_lostand_found_management_system.domain.CampusMember;
 import rw.auca.campus_lostand_found_management_system.repository.CampusMemberRepository;
+import rw.auca.campus_lostand_found_management_system.repository.CustodianRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,9 +14,11 @@ import java.util.UUID;
 public class CampusMemberService {
 
     private final CampusMemberRepository campusMemberRepository;
+    private final CustodianRepository custodianRepository;
 
-    public CampusMemberService(CampusMemberRepository campusMemberRepository) {
+    public CampusMemberService(CampusMemberRepository campusMemberRepository, CustodianRepository custodianRepository) {
         this.campusMemberRepository = campusMemberRepository;
+        this.custodianRepository = custodianRepository;
     }
 
     public String saveCampusMember(CampusMember campusMember) {
@@ -71,5 +74,15 @@ public class CampusMemberService {
 
         campusMemberRepository.deleteById(id);
         return true;
+    }
+
+    public Optional<List<CampusMember>> findMembersOfCustodian(UUID custodianId) {
+
+        if (!custodianRepository.existsById(custodianId)) {
+            return Optional.empty();
+        }
+
+        return Optional.of(
+                campusMemberRepository.findMembersOfCustodian(custodianId));
     }
 }
