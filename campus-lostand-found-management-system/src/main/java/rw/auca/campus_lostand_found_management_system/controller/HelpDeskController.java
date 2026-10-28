@@ -81,4 +81,9 @@ public class HelpDeskController {
                     .body("The help desk with that ID does not exist");
         }
     }
+
+    @GetMapping("/free")
+    public ResponseEntity<List<HelpDesk>> getFreeHelpDesks() {
+        return ResponseEntity.ok(helpDeskService.getFreeHelpDesks());
+    }
 }

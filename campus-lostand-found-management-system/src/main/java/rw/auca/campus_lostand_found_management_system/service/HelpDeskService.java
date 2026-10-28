@@ -48,4 +48,8 @@ public class HelpDeskService {
         helpDeskRepository.deleteById(id);
         return true;
     }
+
+    public List<HelpDesk> getFreeHelpDesks() {
+    return helpDeskRepository.findFreeHelpDesks();
+}
 }
