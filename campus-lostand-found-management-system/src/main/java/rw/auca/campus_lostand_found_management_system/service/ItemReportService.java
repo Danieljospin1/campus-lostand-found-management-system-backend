@@ -165,4 +165,8 @@ public class ItemReportService {
     public List<ItemReport> findBetweenDates(LocalDate start, LocalDate end) {
         return itemReportRepository.findByReportDateBetweenOrderByReportDateAsc(start, end);
     }
+
+    public List<Object[]> getItemReportStatsByStatus() {
+        return itemReportRepository.countItemReportsByStatus();
+    }
 }

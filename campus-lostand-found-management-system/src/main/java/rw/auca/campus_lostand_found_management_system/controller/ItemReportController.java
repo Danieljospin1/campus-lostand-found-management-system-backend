@@ -136,4 +136,10 @@ public class ItemReportController {
 
         return ResponseEntity.ok(reports);
     }
+
+    @GetMapping("/stats/by-status")
+    public ResponseEntity<List<Object[]>> getItemReportStatsByStatus() {
+        return ResponseEntity.ok(
+                itemReportService.getItemReportStatsByStatus());
+    }
 }
