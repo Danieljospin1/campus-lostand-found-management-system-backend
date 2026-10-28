@@ -99,13 +99,14 @@ public class ItemReportController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteItemReport(@PathVariable UUID id) {
 
-        boolean deleted = itemReportService.deleteItemReport(id);
+        String deleted = itemReportService.deleteItemReport(id);
 
-        if (deleted) {
-            return ResponseEntity.ok("Item report deleted successfully");
+        if (deleted.equals("The item report with that id does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(deleted);
+        } else if (deleted.equals("That item report has handovers, delete them first")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(deleted);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("The item report with that ID does not exist");
+            return ResponseEntity.ok(deleted);
         }
     }
 

@@ -12,6 +12,7 @@ import rw.auca.campus_lostand_found_management_system.domain.ItemReport;
 import rw.auca.campus_lostand_found_management_system.domain.ReportStatus;
 import rw.auca.campus_lostand_found_management_system.repository.CampusMemberRepository;
 import rw.auca.campus_lostand_found_management_system.repository.CustodianRepository;
+import rw.auca.campus_lostand_found_management_system.repository.HandoverRepository;
 import rw.auca.campus_lostand_found_management_system.repository.ItemReportRepository;
 
 @Service
@@ -20,14 +21,17 @@ public class ItemReportService {
     private final ItemReportRepository itemReportRepository;
     private final CampusMemberRepository campusMemberRepository;
     private final CustodianRepository custodianRepository;
+    private final HandoverRepository handoverRepository;
 
     public ItemReportService(
             ItemReportRepository itemReportRepository,
             CampusMemberRepository campusMemberRepository,
-            CustodianRepository custodianRepository) {
+            CustodianRepository custodianRepository,
+            HandoverRepository handoverRepository) {
         this.itemReportRepository = itemReportRepository;
         this.campusMemberRepository = campusMemberRepository;
         this.custodianRepository = custodianRepository;
+        this.handoverRepository = handoverRepository;
     }
 
     public String saveItemReport(ItemReport itemReport) {
@@ -139,13 +143,23 @@ public class ItemReportService {
         return "Item report status updated successfully";
     }
 
-    public boolean deleteItemReport(UUID id) {
-        if (!itemReportRepository.existsById(id)) {
-            return false;
+    public String deleteItemReport(UUID id) {
+        var itemReportOptional = itemReportRepository.findById(id);
+
+        if (itemReportOptional.isEmpty()) {
+            return "The item report with that id does not exist";
         }
 
-        itemReportRepository.deleteById(id);
-        return true;
+        var itemReport = itemReportOptional.get();
+
+        if (handoverRepository.existsByItemReport(itemReport)) {
+            return "That item report has handovers, delete them first";
+        }
+
+        itemReportRepository.delete(itemReport);
+
+        return "Item report deleted successfully";
+
     }
 
     public List<ItemReport> findBetweenDates(LocalDate start, LocalDate end) {
