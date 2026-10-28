@@ -38,6 +38,9 @@ public class ItemReportController {
 
         if (result.equals("Item report saved successfully")) {
             return ResponseEntity.status(HttpStatus.CREATED).body(result);
+        } else if (result.equals(
+                "Custodian already handles an item report on that date")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(result);
         } else {
             return ResponseEntity.badRequest().body(result);
         }

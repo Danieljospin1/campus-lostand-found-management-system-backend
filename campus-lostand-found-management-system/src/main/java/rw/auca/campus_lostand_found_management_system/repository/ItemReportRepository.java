@@ -6,11 +6,14 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import rw.auca.campus_lostand_found_management_system.domain.Custodian;
 import rw.auca.campus_lostand_found_management_system.domain.ItemReport;
 import rw.auca.campus_lostand_found_management_system.domain.ReportStatus;
 
 public interface ItemReportRepository
         extends JpaRepository<ItemReport, UUID> {
+
+    boolean existsByCustodianAndReportDateAndStatusNot(Custodian custodian, LocalDate reportDate, ReportStatus status);
 
     List<ItemReport> findByStatusOrderByReportDateAsc(ReportStatus status);
 

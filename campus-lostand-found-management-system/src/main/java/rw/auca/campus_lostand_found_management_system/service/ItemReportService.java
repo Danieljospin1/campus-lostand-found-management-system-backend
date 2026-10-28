@@ -31,6 +31,10 @@ public class ItemReportService {
     }
 
     public String saveItemReport(ItemReport itemReport) {
+
+        if (itemReport.getReportDate().isBefore(LocalDate.now())) {
+            return "Item report date cannot be in the past";
+        }
         if (itemReport.getCampusMember() == null
                 || itemReport.getCampusMember().getId() == null
                 || !campusMemberRepository.existsById(
@@ -38,11 +42,25 @@ public class ItemReportService {
             return "The specified campus member does not exist";
         }
 
-        if (itemReport.getCustodian() != null
-                && (itemReport.getCustodian().getId() == null
-                        || !custodianRepository.existsById(
-                                itemReport.getCustodian().getId()))) {
-            return "The specified custodian does not exist";
+        if (itemReport.getCustodian() != null) {
+            var custodianId = itemReport.getCustodian().getId();
+            var custodian = custodianRepository.findById(custodianId);
+            if (custodian.isEmpty()) {
+                return "The specified custodian does not exist";
+            }
+
+            boolean alreadyHasReport = itemReportRepository
+                    .existsByCustodianAndReportDateAndStatusNot(
+                            custodian.get(),
+                            itemReport.getReportDate(),
+                            ReportStatus.CLOSED);
+
+            if (alreadyHasReport) {
+                return "Custodian already handles an item report on that date";
+            }
+
+            itemReport.setCustodian(custodian.get());
+
         }
 
         itemReport.setStatus(ReportStatus.REPORTED);
