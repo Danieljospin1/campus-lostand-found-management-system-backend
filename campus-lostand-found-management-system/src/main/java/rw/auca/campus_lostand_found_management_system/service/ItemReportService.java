@@ -109,6 +109,36 @@ public class ItemReportService {
         });
     }
 
+    public String updateItemReportStatus(UUID id, ReportStatus newStatus) {
+
+        var optionalReport = itemReportRepository.findById(id);
+
+        if (optionalReport.isEmpty()) {
+            return "The item report with that id does not exist";
+        }
+
+        ItemReport report = optionalReport.get();
+        ReportStatus currentStatus = report.getStatus();
+
+        boolean allowed = (currentStatus == ReportStatus.REPORTED
+                && (newStatus == ReportStatus.MATCHED
+                        || newStatus == ReportStatus.CLOSED))
+                ||
+                (currentStatus == ReportStatus.MATCHED
+                        && (newStatus == ReportStatus.RETURNED
+                                || newStatus == ReportStatus.CLOSED));
+
+        if (!allowed) {
+            return "Cannot change status from "
+                    + currentStatus + " to " + newStatus;
+        }
+
+        report.setStatus(newStatus);
+        itemReportRepository.save(report);
+
+        return "Item report status updated successfully";
+    }
+
     public boolean deleteItemReport(UUID id) {
         if (!itemReportRepository.existsById(id)) {
             return false;

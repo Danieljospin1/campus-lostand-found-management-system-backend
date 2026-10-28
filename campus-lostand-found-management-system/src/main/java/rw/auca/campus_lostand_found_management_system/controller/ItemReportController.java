@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -76,6 +77,22 @@ public class ItemReportController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("The item report with that ID does not exist, or a referenced member or custodian is invalid");
+        }
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<String> updateItemReportStatus(
+            @PathVariable UUID id,
+            @RequestParam ReportStatus status) {
+
+        String result = itemReportService.updateItemReportStatus(id, status);
+
+        if (result.equals("The item report with that id does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+        } else if (result.equals("Item report status updated successfully")) {
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.badRequest().body(result);
         }
     }
 
