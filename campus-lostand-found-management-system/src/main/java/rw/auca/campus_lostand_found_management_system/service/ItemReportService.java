@@ -50,6 +50,10 @@ public class ItemReportService {
         return "Item report saved successfully";
     }
 
+    public List<ItemReport> findByStatus(ReportStatus status) {
+        return itemReportRepository.findByStatusOrderByReportDateAsc(status);
+    }
+
     public List<ItemReport> getAllItemReports() {
         return itemReportRepository.findAll();
     }
