@@ -35,4 +35,13 @@ public class HandoverController {
         }
     }
 
+    @GetMapping("/campus-member/{campusId}")
+    public ResponseEntity<List<Handover>> getHandoversByCampusMember(
+            @PathVariable String campusId) {
+
+        List<Handover> handovers = handoverService.getHandoversByCampusMember(campusId);
+
+        return ResponseEntity.ok(handovers);
+    }
+
 }

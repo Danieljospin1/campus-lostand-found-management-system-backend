@@ -43,5 +43,8 @@ public class HandoverService {
         return "Handover saved successfully";
     }
 
-    
+    public List<Handover> getHandoversByCampusMember(String campusId) {
+        return handoverRepository.findByCampusMemberCampusId(campusId);
+    }
+
 }
