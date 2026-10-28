@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import rw.auca.campus_lostand_found_management_system.domain.Custodian;
@@ -84,5 +85,13 @@ public class CustodianController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("The custodian with that ID does not exist");
         }
+    }
+
+    @GetMapping("/by-item-category")
+    public ResponseEntity<List<Custodian>> findByItemCategory(@RequestParam String name) {
+
+        List<Custodian> custodians = custodianService.findByItemCategoryName(name);
+
+        return ResponseEntity.ok(custodians);
     }
 }

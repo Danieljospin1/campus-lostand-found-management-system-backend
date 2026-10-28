@@ -103,4 +103,8 @@ public class CustodianService {
         custodianRepository.deleteById(id);
         return true;
     }
+
+    public List<Custodian> findByItemCategoryName(String name) {
+        return custodianRepository.findByItemCategoryNameIgnoreCase(name);
+    }
 }
