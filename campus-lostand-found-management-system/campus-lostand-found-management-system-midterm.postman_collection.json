@@ -1,0 +1,1017 @@
+{
+  "info": {
+    "_postman_id": "003db208-b2fb-4dfb-972f-7ed47b085154",
+    "name": "Campus Lost and Found Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "36720347"
+  },
+  "item": [
+    {
+      "name": "requirements",
+      "item": [
+        {
+          "name": "B1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/campus-members/by-last-name?lastName=bisubizo",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "campus-members",
+                "by-last-name"
+              ],
+              "query": [
+                {
+                  "key": "lastName",
+                  "value": "bisubizo"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "B2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/item-reports/by-status?status=REPORTED",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "item-reports",
+                "by-status"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "REPORTED"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "B3",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/item-reports/between?start=2026-10-01&end=2026-10-31",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "item-reports",
+                "between"
+              ],
+              "query": [
+                {
+                  "key": "start",
+                  "value": "2026-10-01"
+                },
+                {
+                  "key": "end",
+                  "value": "2026-10-31"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "C1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/custodians/by-item-category?name=Clothes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "custodians",
+                "by-item-category"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "Clothes"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "C2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/help-desks/free",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "help-desks",
+                "free"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "C3",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/item-categories/unused",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "item-categories",
+                "unused"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "C4",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/campus-members/of-custodian/70c56908-2340-4f0f-865e-8822a3b4ed33",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "campus-members",
+                "of-custodian",
+                "70c56908-2340-4f0f-865e-8822a3b4ed33"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"reportDate\": \"2026-10-20\",\r\n  \"status\": \"REPORTED\",\r\n  \"itemName\": \"student id\",\r\n  \"location\": \"AUCA Library\",\r\n  \"campusMember\": {\r\n    \"id\": \"c63f9273-8fdf-41bc-9b18-5557fd219e6b\"\r\n  },\r\n  \"custodian\": {\r\n    \"id\": \"70c56908-2340-4f0f-865e-8822a3b4ed33\"\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/item-reports/save",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "item-reports",
+                "save"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D2",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/item-reports/77159175-4179-4dd6-84d7-3756fc1905c6/status?status=MATCHED",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "item-reports",
+                "77159175-4179-4dd6-84d7-3756fc1905c6",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "MATCHED"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D3",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/custodians/70c56908-2340-4f0f-865e-8822a3b4ed33/item-categories/931c1fb2-fbf6-43dc-8a08-6e9a8d4a9a02",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "custodians",
+                "70c56908-2340-4f0f-865e-8822a3b4ed33",
+                "item-categories",
+                "931c1fb2-fbf6-43dc-8a08-6e9a8d4a9a02"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D4",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/custodians/70c56908-2340-4f0f-865e-8822a3b4ed33/help-desk?deskNumber=4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "custodians",
+                "70c56908-2340-4f0f-865e-8822a3b4ed33",
+                "help-desk"
+              ],
+              "query": [
+                {
+                  "key": "deskNumber",
+                  "value": "4"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"proofType\": \"Student ID\",\r\n  \"remarks\": \"Owner identified the phone wallpaper\",\r\n  \"itemsReturned\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/handovers/save?itemReportId=77159175-4179-4dd6-84d7-3756fc1905c6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "handovers",
+                "save"
+              ],
+              "query": [
+                {
+                  "key": "itemReportId",
+                  "value": "77159175-4179-4dd6-84d7-3756fc1905c6"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/handovers/campus-member/AUCA-2026-001",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "handovers",
+                "campus-member",
+                "AUCA-2026-001"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E3",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/item-reports/delete/77159175-4179-4dd6-84d7-3756fc1905c6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "item-reports",
+                "delete",
+                "77159175-4179-4dd6-84d7-3756fc1905c6"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "F1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/item-reports/stats/by-status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "item-reports",
+                "stats",
+                "by-status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "F2",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/item-reports/cancel-day?custodianId=70c56908-2340-4f0f-865e-8822a3b4ed33&date=2026-10-20",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "item-reports",
+                "cancel-day"
+              ],
+              "query": [
+                {
+                  "key": "custodianId",
+                  "value": "70c56908-2340-4f0f-865e-8822a3b4ed33"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-10-20"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "save itemCategory",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Electronics\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/item-categories/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "item-categories",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get all item categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/item-categories/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "item-categories",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "retrieve 1 category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/item-categories/6e4c8585-d232-4435-86de-0756522d4aae",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "item-categories",
+            "6e4c8585-d232-4435-86de-0756522d4aae"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update a category",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Electronic Devices\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/item-categories/update/6e4c8585-d232-4435-86de-0756522d4aae",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "item-categories",
+            "update",
+            "6e4c8585-d232-4435-86de-0756522d4aae"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete a category",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/item-categories/delete/6e4c8585-d232-4435-86de-0756522d4aae",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "item-categories",
+            "delete",
+            "6e4c8585-d232-4435-86de-0756522d4aae"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Save a help desk",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"deskNumber\": 1,\r\n  \"name\": \"Main Campus Help Desk\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/help-desks/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "help-desks",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get all help desks",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "retrieve 1 help desk",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/help-desks/98d786e1-2917-406e-b394-290d97c2f651",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "help-desks",
+            "98d786e1-2917-406e-b394-290d97c2f651"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete a help desk",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/help-desks/delete/57b21c22-84be-458f-ad8c-393c8af6ad28",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "help-desks",
+            "delete",
+            "57b21c22-84be-458f-ad8c-393c8af6ad28"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Save a custodian",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"Jean\",\r\n  \"lastName\": \"Mugisha\",\r\n  \"phone\": \"0788123456\",\r\n  \"helpDesk\": {\r\n    \"id\": \"98d786e1-2917-406e-b394-290d97c2f651\"\r\n  },\r\n  \"itemCategories\": [\r\n    {\r\n      \"id\": \"931c1fb2-fbf6-43dc-8a08-6e9a8d4a9a02\"\r\n    }\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/custodians/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "custodians",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get all custodians",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/custodians/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "custodians",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get one custodian",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/custodians/70c56908-2340-4f0f-865e-8822a3b4ed33",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "custodians",
+            "70c56908-2340-4f0f-865e-8822a3b4ed33"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update custodian",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"Jeanss\",\r\n  \"lastName\": \"Mugisha\",\r\n  \"phone\": \"0788999000\",\r\n  \"helpDesk\": {\r\n    \"id\": \"98d786e1-2917-406e-b394-290d97c2f651\"\r\n  },\r\n  \"itemCategories\": [\r\n    {\r\n      \"id\": \"931c1fb2-fbf6-43dc-8a08-6e9a8d4a9a02\"\r\n    }\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/custodians/update/70c56908-2340-4f0f-865e-8822a3b4ed33",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "custodians",
+            "update",
+            "70c56908-2340-4f0f-865e-8822a3b4ed33"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete custodian",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/custodians/delete/922bc1dc-77de-4373-983d-fa40feb1c41d",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "custodians",
+            "delete",
+            "922bc1dc-77de-4373-983d-fa40feb1c41d"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "save campus member",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"Alice\",\r\n  \"lastName\": \"Uwimana\",\r\n  \"campusId\": \"AUCA-2026-001\",\r\n  \"email\": \"alice@example.com\",\r\n  \"phone\": \"0788111222\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/campus-members/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "campus-members",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get all campus members",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/campus-members/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "campus-members",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get campus member by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/campus-members/a93ec1c5-c6f0-4e8b-b0bb-5b78bf51a9a4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "campus-members",
+            "a93ec1c5-c6f0-4e8b-b0bb-5b78bf51a9a4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update campus member",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"Alice\",\r\n  \"lastName\": \"Uwimana\",\r\n  \"campusId\": \"AUCA-2026-001\",\r\n  \"email\": \"alice.updated@example.com\",\r\n  \"phone\": \"0788333444\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/campus-members/update/a93ec1c5-c6f0-4e8b-b0bb-5b78bf51a9a4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "campus-members",
+            "update",
+            "a93ec1c5-c6f0-4e8b-b0bb-5b78bf51a9a4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete campus member",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/campus-members/delete/a93ec1c5-c6f0-4e8b-b0bb-5b78bf51a9a4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "campus-members",
+            "delete",
+            "a93ec1c5-c6f0-4e8b-b0bb-5b78bf51a9a4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Save an item report",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"reportDate\": \"2026-10-27\",\r\n  \"status\": \"CLOSED\",\r\n  \"itemName\": \"Black laptop bag\",\r\n  \"location\": \"AUCA Library\",\r\n  \"campusMember\": {\r\n    \"id\": \"094ad5c0-d23a-4375-b9b5-fdde89a2611a\"\r\n  },\r\n  \"custodian\": {\r\n    \"id\": \"70c56908-2340-4f0f-865e-8822a3b4ed33\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/item-reports/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "item-reports",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get all reports",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/item-reports/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "item-reports",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get report by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/item-reports/da3083ea-12bb-4859-a4b2-cd2aad72b2d9",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "item-reports",
+            "da3083ea-12bb-4859-a4b2-cd2aad72b2d9"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update report by id",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"reportDate\": \"2026-10-27\",\r\n  \"itemName\": \"Black laptop bags\",\r\n  \"location\": \"AUCA Administration Block\",\r\n  \"campusMember\": {\r\n    \"id\": \"094ad5c0-d23a-4375-b9b5-fdde89a2611a\"\r\n  },\r\n  \"custodian\": {\r\n    \"id\": \"70c56908-2340-4f0f-865e-8822a3b4ed33\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/item-reports/update/da3083ea-12bb-4859-a4b2-cd2aad72b2d9",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "item-reports",
+            "update",
+            "da3083ea-12bb-4859-a4b2-cd2aad72b2d9"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete report",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/item-reports/delete/da3083ea-12bb-4859-a4b2-cd2aad72b2d9",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "item-reports",
+            "delete",
+            "da3083ea-12bb-4859-a4b2-cd2aad72b2d9"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
