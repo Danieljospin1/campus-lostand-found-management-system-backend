@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -107,6 +108,24 @@ public class CustodianController {
                 || result.equals("That item category does not exist")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
         } else if (result.equals("The custodian already has that item category")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(result);
+        } else {
+            return ResponseEntity.ok(result);
+        }
+    }
+
+    @PatchMapping("/{custodianId}/help-desk")
+    public ResponseEntity<String> changeHelpDesk(
+            @PathVariable UUID custodianId,
+            @RequestParam int deskNumber) {
+
+        String result = custodianService.changeHelpDesk(
+                custodianId, deskNumber);
+
+        if (result.equals("The custodian with that id does not exist")
+                || result.equals("The help desk with that deskNumber does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+        } else if (result.equals("That help desk is taken by another custodian")) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(result);
         } else {
             return ResponseEntity.ok(result);

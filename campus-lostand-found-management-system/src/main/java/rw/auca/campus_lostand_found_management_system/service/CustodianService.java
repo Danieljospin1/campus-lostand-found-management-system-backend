@@ -134,4 +134,31 @@ public class CustodianService {
 
         return "Item category added to the custodian";
     }
+
+    public String changeHelpDesk(UUID custodianId, int deskNumber) {
+
+        var custodianOptional = custodianRepository.findById(custodianId);
+
+        if (custodianOptional.isEmpty()) {
+            return "The custodian with that id does not exist";
+        }
+
+        var helpDeskOptional = helpDeskRepository.findByDeskNumber(deskNumber);
+
+        if (helpDeskOptional.isEmpty()) {
+            return "The help desk with that deskNumber does not exist";
+        }
+
+        var custodian = custodianOptional.get();
+        var helpDesk = helpDeskOptional.get();
+
+        if (custodianRepository.existsByHelpDeskAndIdNot(helpDesk, custodianId)) {
+            return "That help desk is taken by another custodian";
+        }
+
+        custodian.setHelpDesk(helpDesk);
+        custodianRepository.save(custodian);
+
+        return "Help desk changed successfully";
+    }
 }
