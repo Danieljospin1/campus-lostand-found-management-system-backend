@@ -28,6 +28,11 @@ public class CampusMemberService {
         return "Campus member saved successfully";
     }
 
+    public List<CampusMember> findByLastName(String lastName) {
+        return campusMemberRepository
+                .findByLastNameIgnoreCaseOrderByFirstNameAsc(lastName);
+    }
+
     public List<CampusMember> getAllCampusMembers() {
         return campusMemberRepository.findAll();
     }
@@ -42,8 +47,7 @@ public class CampusMemberService {
         return campusMemberRepository.findById(id).flatMap(existingMember -> {
             String updatedCampusId = updatedMember.getCampusId();
 
-            boolean campusIdUsedByAnotherMember =
-                    campusMemberRepository.existsByCampusId(updatedCampusId)
+            boolean campusIdUsedByAnotherMember = campusMemberRepository.existsByCampusId(updatedCampusId)
                     && !existingMember.getCampusId().equals(updatedCampusId);
 
             if (campusIdUsedByAnotherMember) {

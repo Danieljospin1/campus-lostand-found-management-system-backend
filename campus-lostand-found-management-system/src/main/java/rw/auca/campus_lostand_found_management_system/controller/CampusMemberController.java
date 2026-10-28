@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import rw.auca.campus_lostand_found_management_system.domain.CampusMember;
@@ -85,5 +86,14 @@ public class CampusMemberController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("The campus member with that ID does not exist");
         }
+    }
+
+    @GetMapping("/by-last-name")
+    public ResponseEntity<List<CampusMember>> findByLastName(
+            @RequestParam String lastName) {
+
+        List<CampusMember> members = campusMemberService.findByLastName(lastName);
+
+        return ResponseEntity.ok(members);
     }
 }
