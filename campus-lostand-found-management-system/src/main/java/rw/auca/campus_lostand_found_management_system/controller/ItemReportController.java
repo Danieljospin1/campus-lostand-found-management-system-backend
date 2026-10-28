@@ -1,5 +1,6 @@
 package rw.auca.campus_lostand_found_management_system.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -93,6 +94,24 @@ public class ItemReportController {
             @RequestParam ReportStatus status) {
 
         List<ItemReport> reports = itemReportService.findByStatus(status);
+
+        return ResponseEntity.ok(reports);
+    }
+
+    @GetMapping("/between")
+    public ResponseEntity<?> findBetweenDates(
+            @RequestParam String start,
+            @RequestParam String end) {
+
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+
+        if (startDate.isAfter(endDate)) {
+            return ResponseEntity.badRequest()
+                    .body("Start date must not be after end date");
+        }
+
+        List<ItemReport> reports = itemReportService.findBetweenDates(startDate, endDate);
 
         return ResponseEntity.ok(reports);
     }

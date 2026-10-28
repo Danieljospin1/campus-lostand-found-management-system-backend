@@ -1,6 +1,7 @@
 
 package rw.auca.campus_lostand_found_management_system.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -86,7 +87,6 @@ public class ItemReportService {
             existingReport.setCampusMember(updatedReport.getCampusMember());
             existingReport.setCustodian(updatedReport.getCustodian());
 
-            // Status changes will be handled by the dedicated status endpoint.
             return Optional.of(itemReportRepository.save(existingReport));
         });
     }
@@ -98,5 +98,9 @@ public class ItemReportService {
 
         itemReportRepository.deleteById(id);
         return true;
+    }
+
+    public List<ItemReport> findBetweenDates(LocalDate start, LocalDate end) {
+        return itemReportRepository.findByReportDateBetweenOrderByReportDateAsc(start, end);
     }
 }
